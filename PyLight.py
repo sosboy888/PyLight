@@ -18,19 +18,19 @@ def vidMake(VIDEO_QUEUE):
         img=cv2.cvtColor(img,cv2.COLOR_RGB2BGR)
         out.write(img)
     gc.collect()
-def vidCap(VIDEO_QUEUE):
+def vidCap():
     d=d3dshot.create(capture_output="numpy",frame_buffer_size=900)
     print("Initiating Buffer")
     d.capture(target_fps=30)
     while True:
-        if(keyboard.is_pressed("q")):
+        if(keyboard.is_pressed(PyLightSettings.recordButton)):
             d.stop()
             vidMake(d.frame_buffer)
             break
-    
+        if(keyboard.is_pressed(PyLightSettings.exitButton)):
+            break
         
-VIDEO_QUEUE=[]
-vidCap(VIDEO_QUEUE)
+vidCap()
         
         
     
